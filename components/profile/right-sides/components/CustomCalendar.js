@@ -9,6 +9,7 @@ const CustomCalendar = ({ show, adjustData }) => {
     const calendarHandler = (event, show, selectedItem) => {
         const result = calendar(event, show);
         setDate(result[1]);
+        console.log(date, "디버그")
         return adjustData(result[0], result[1]);
       };
 
