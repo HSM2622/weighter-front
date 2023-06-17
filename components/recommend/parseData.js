@@ -35,7 +35,7 @@ export function parseData(inputString) {
     } else if (line.includes('(') && line.includes(')')) {
       const date = line.substring(0, line.indexOf('(')).trim();
       currentDate = formatDate(date);
-      currentMeal = ''; // 식사 종류 초기화
+      currentMeal = ''; // 食事の種類を初期化
     } else {
       currentMeal = line.substring(0, line.indexOf(':')).trim().toLowerCase();
     }
@@ -71,5 +71,5 @@ function parseValue(valueString) {
   if (match) {
     return parseFloat(match[0]);
   }
-  return 0; // 예외 처리를 추가하여 기본값 설정
+  return 0; // 例外処理を追加してデフォルト設定
 }

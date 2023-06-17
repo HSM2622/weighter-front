@@ -16,9 +16,6 @@ const aiPlan = ({listData = [], category = ""}) => {
       }
       console.log(newCheckedItems,"Debug0");
       setCheckedItems(newCheckedItems);
-      console.log(checkedItems, "디버그");
-      console.log(listData, "디버그3");
-      console.log(alreadyCheckedItems, "디버그4");
     };
 
     const postCheckedItems = (event) => {
@@ -30,9 +27,8 @@ const aiPlan = ({listData = [], category = ""}) => {
         const index = alreadyCheckedItems[i];
         if (!checkedItems.includes(index)) {
           unCheckedIndexes.push(index);
-          // alreadyCheckedItems.splice(i, 1); // 이미 확인된 항목에서 해당 인덱스를 제거
-              console.log(unCheckedIndexes, "디버그5 and ",alreadyCheckedItems, "디버그6");
-          // i--; // splice로 인해 배열의 길이가 변하므로 인덱스를 조정
+        // already Checked Items.splice(i, 1); // すでに確認された項目から該当インデックスを削除
+        // i---// spliceによって配列の長さが変わるのでインデックスを調整
         }
       }
       const unSelectedItems = unCheckedIndexes.map((index) => listData[index]);
@@ -54,7 +50,6 @@ const aiPlan = ({listData = [], category = ""}) => {
                 // selectedItems.splice(index, 1);
             }
             setCheckedItems(selectedItems);
-            console.log("디버그", selectedItems);
             request()
               .post("/profile/deletePost", { items: selectedItems, unCheckedItems: unSelectedItems , model: model })
               .then((res) => {

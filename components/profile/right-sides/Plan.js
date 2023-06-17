@@ -27,6 +27,7 @@ const ExerciseStat = () => {
     setIsOpen(false);
   };
 
+  // Rechartが必要とするデータ形式をバックエンドに要請
   const adjustData = async (show, date) => {
     let result, resultGpt, aiPlan;
     let resultPromise = new Promise((resolve, reject) => {
@@ -39,6 +40,7 @@ const ExerciseStat = () => {
           reject(err);
         });
     });
+    
     let resultGptPromise = new Promise((resolve, reject) => {
       request()
         .post("profile/chart", { period: show, date, category: category + "Plan", type: selectedItem })
@@ -61,6 +63,7 @@ const ExerciseStat = () => {
         });
     });
 
+    // バックエンドからデータを取得するまで待つためにプロミスを使用
     try {
       result = await resultPromise;
       resultGpt = await resultGptPromise;
@@ -148,7 +151,7 @@ const ExerciseStat = () => {
       <div className='flex flex-col items-center justify-center'>
         {category == "exercise" ? (
           <div className='flex flex-row w-[50%]'>
-            {/* 메뉴, 드롭 사이즈 */}
+            {/* メニュー、ドロップサイズ */}
             <div className='z-50 flex w-full'>
               <Choice setCategory={setCategory} category={category} />
               <div className='flex flex-col w-[50%]'>
@@ -181,7 +184,7 @@ const ExerciseStat = () => {
             <Choice setCategory={setCategory} category={category} />
           </div>
         )}
-        {/* 캘린더 사이즈 */}
+        {/* カレンダーサイズ */}
         <div className='flex flex-col w-[50%]'>
           <div className='flex flex-row'>
             {["year", "month", "week", "day"].map((type) => (
